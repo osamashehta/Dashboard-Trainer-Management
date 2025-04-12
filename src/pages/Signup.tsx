@@ -25,7 +25,7 @@ const Signup = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    if (data.email === user.email && data.password === user.password) {
+    if (user && data.email === user.email ) {
       setIsExist(true);
       return null;
     }
@@ -121,9 +121,8 @@ const Signup = () => {
             {...register("password", {
               required: true,
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                message:
-                  "Password must be at least 8 characters long and contain both letters and numbers.",
+                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/,
+                message: "Password must be at least 8 characters long and contain both letters, numbers, and special characters.",
               },
             })}
             className={`border rounded-[10px] p-2 w-full ${

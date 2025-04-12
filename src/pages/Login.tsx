@@ -97,9 +97,8 @@ const Login = () => {
             {...register("password", {
               required: true,
               pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                message:
-                  "Password must be at least 8 characters long and contain both letters and numbers.",
+                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/,
+                message: "Password must be at least 8 characters long and contain both letters, numbers, and special characters.",
               },
             })}
             className={`border rounded-[10px] p-2 w-full ${
