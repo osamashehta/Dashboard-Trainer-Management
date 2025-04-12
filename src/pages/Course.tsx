@@ -29,7 +29,7 @@ const Course = () => {
       instructor: "Ahmed Ali",
       duration: "8 weeks",
       price: "150",
-      status: "Active",
+      status: "Upcoming",
     },
   ];
 

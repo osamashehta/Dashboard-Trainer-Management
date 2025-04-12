@@ -46,7 +46,7 @@ const CourseTable = ({
           >
             <td className="text-slate-600 text-[10px] font-medium md:text-[18px] md:font-semibold">
               <Link
-                to={`/courses/${item.id}-${item.courseName}-${item.instructor}-${item.duration}-${item.price}-${item.status}`}
+                to={`/courses/${item.courseName}-${item.instructor}-${item.duration}-${item.price}-${item.status}`}
                 className="flex flex-col"
               >
                 <p>{item.courseName}</p>{" "}
