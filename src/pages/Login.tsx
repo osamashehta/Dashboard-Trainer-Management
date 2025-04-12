@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import spinner from "../assets/images/Ellipsis@1x-1.0s-66px-66px.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 type Inputs = {
   email: string;
   password: string;
 };
 const Login = () => {
   const [isPending, setIsPending] = useState(false);
+  const [user] = useState<Inputs>(
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") as string)
+      : {}
+  );
+  const [isExist, setIsExist] = useState(true);
   const navigate = useNavigate();
   const {
     register,
@@ -16,6 +22,10 @@ const Login = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (!(data.email === user.email && data.password === user.password)) {
+      setIsExist(false);
+      return null;
+    }
     setIsPending(true);
     new Promise((resolve) => setTimeout(resolve, 1000)).then(() => {
       console.log(data);
@@ -26,8 +36,15 @@ const Login = () => {
   };
   return (
     <div className="flex flex-col gap-4 justify-center items-center  h-dvh Container">
-      <h3 className="text-2xl font-semibold">Sign in to your account</h3>
-
+      <h3 className="text-2xl font-semibold text-blue-600">
+        Sign in to your account
+      </h3>
+      {!isExist && (
+        <h3 className="text-md font-semibold bg-red-300/[0.4] px-4 py-2 rounded-[14px] text-red-600">
+          {" "}
+          Email or password is incorrect, please try again 
+        </h3>
+      )}
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
@@ -99,6 +116,9 @@ const Login = () => {
             "Sign in"
           )}
         </button>
+        <Link to="/signup" className="text-blue-600 text-center cursor-pointer">
+          You don't have an account
+        </Link>
       </form>
     </div>
   );

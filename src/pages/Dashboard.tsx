@@ -1,7 +1,30 @@
 import course_gray from "../assets/images/course-gray.svg";
 import people_gray from "../assets/images/people-gray.svg";
 import payment_gray from "../assets/images/payment-gray.svg";
+import { TRecentActivities } from "../lib/types";
+
 const Dashboard = () => {
+  const generateUniqueId = () => Math.floor(Math.random() * 1000000);
+  const recentActivities: TRecentActivities[] = [
+    {
+      id: generateUniqueId(),
+      event: "New Course Added",
+      eventTitle: "Advanced React Course",
+      time: "2 hours ago",
+    },
+    {
+      id: generateUniqueId(),
+      event: "Trainer Assigned",
+      eventTitle: "Osama Saqr to React fundamental course",
+      time: "8 hours ago",
+    },
+    {
+      id: generateUniqueId(),
+      event: "Payment Received",
+      eventTitle: "$100 from Ali Ahmed",
+      time: "16 hours ago",
+    },
+  ];
   return (
     <div className="Container pb-8 ">
       <h3 className="mt-8 mb-4 text-2xl font-semibold">Dashboard</h3>
@@ -45,41 +68,26 @@ const Dashboard = () => {
 
       <div className="bg-[#FFFFFF] pb-4 px-4 rounded-[12px] mt-8 shadow-md shadow-slate-300">
         <h3 className="mt-8 mb-4 text-2xl font-semibold">Recent Activities</h3>
-        <div className="border-b  border-slate-300 py-2  px-4">
-          <div className="flex justify-between">
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold shadow-slate-700">New Course Added</p>
-              <p className="font-medium text-gray-600">
-                {" "}
-                Advanced React Course
-              </p>
-            </div>
-            <p className="font-medium text-gray-600">2 hours ago</p>
-          </div>
-        </div>
 
-        <div className="border-b  border-slate-300 py-2  px-4">
-          <div className="flex justify-between">
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold shadow-slate-700">Trainer Assigned</p>
-              <p className="font-medium text-gray-600">
-                {" "}
-                Osama Saqr to React fundamental course
-              </p>
+        {recentActivities.map((activity) => (
+          <div
+            key={activity.id}
+            className="border-t  border-slate-300 py-2  px-4"
+          >
+            <div className="flex justify-between">
+              <div className="flex flex-col gap-2">
+                <p className="font-semibold shadow-slate-700">
+                  {activity.event}
+                </p>
+                <p className="font-medium text-gray-600">
+                  {" "}
+                  {activity.eventTitle}
+                </p>
+              </div>
+              <p className="font-medium text-gray-600">{activity.time}</p>
             </div>
-            <p className="font-medium text-gray-600">8 hours ago</p>
           </div>
-        </div>
-
-        <div className=" py-2  px-4">
-          <div className="flex justify-between">
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold shadow-slate-700">Payment Received</p>
-              <p className="font-medium text-gray-600"> $100 from Ali Ahmed</p>
-            </div>
-            <p className="font-medium text-gray-600">16 hours ago</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import close from "../assets/images/close.svg";
-type TTableData = {
-  id: number;
-  courseName: string;
-  instructor: string;
-  duration: string;
-  price: string;
-  status: "Active" | "Upcoming";
-};
+import close from "../../assets/images/close.svg";
+import { TTableData } from "../../lib/types";
+
 
 type Props = {
   selectedData: TTableData;

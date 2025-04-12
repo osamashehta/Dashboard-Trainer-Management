@@ -5,7 +5,7 @@ const CourseDetails = () => {
   const { details } = useParams();
   const detailsArray = details?.split("-");
 
-  const [id, courseName, instructor, duration, price, status] =
+  const [ courseName, instructor, duration, price] =
     detailsArray || [];
 
   return (

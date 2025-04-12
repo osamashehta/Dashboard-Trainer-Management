@@ -11,7 +11,7 @@ import payment_blue from "../assets/images/payment-blue.svg";
 import logout from "../assets/images/logout.svg";
 import menu from "../assets/images/menu.svg";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 type TMenuItems = {
   title: string;
@@ -20,7 +20,7 @@ type TMenuItems = {
   link: string;
 };
 const SideMenu = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const pathName = useLocation().pathname;
   console.log("pathName", pathName);
@@ -54,10 +54,15 @@ const SideMenu = () => {
       title: "Payment",
       icon: payment_gray,
       activeIcon: payment_blue,
-      link: "#",
+      link: "/payments",
     },
   ];
+const navigate = useNavigate();
+  const handleLogout = ()=> {
+    localStorage.removeItem("user");
+    navigate("/login");
 
+  }
   return (
     <>
       <aside
@@ -93,14 +98,11 @@ const SideMenu = () => {
               </Link>
             </li>
           ))}
-          <li>
-            <Link
-              to="/login"
-              className="flex items-center text-red-600 gap-2 p-2"
-            >
+          <li className="flex items-center text-red-600 gap-2 p-2 cursor-pointer" onClick={handleLogout}>
+            
               <img src={logout} alt="Logout" />
               <span>Logout</span>
-            </Link>
+            
           </li>
         </ul>
       </aside>

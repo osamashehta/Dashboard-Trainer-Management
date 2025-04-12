@@ -8,6 +8,9 @@ import Course from './pages/Course'
 import Trainer from './pages/Trainer'
 import NotFound from './pages/NotFound'
 import CourseDetails from './pages/CourseDetails'
+import Payment from './pages/Payment'
+import Signup from './pages/Signup'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
@@ -15,14 +18,16 @@ function App() {
     <>
      <Routes>
       <Route  element={<Layout/>}>
-        <Route path="/" element={<Dashboard/>}/>
-        <Route path="/courses" element={<Course/>}/>
-        <Route path="/courses/:details" element={<CourseDetails/>}/>
-        <Route path="/trainers" element={<Trainer/>}/>
+        <Route path="/" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+        <Route path="/courses" element={<ProtectedRoute><Course/></ProtectedRoute>}/>
+        <Route path="/courses/:details" element={<ProtectedRoute><CourseDetails/></ProtectedRoute>}/>
+        <Route path="/trainers" element={<ProtectedRoute><Trainer/></ProtectedRoute>}/>
+        <Route path="/payments" element={<ProtectedRoute><Payment/></ProtectedRoute>}/>
+      <Route path="*" element={<ProtectedRoute><NotFound /></ProtectedRoute>} />
         
       </Route>
       <Route path="/login" element={<Login/>}/>
-      <Route path="*" element={<NotFound />} />
+      <Route path="/signup" element={<Signup/>}/>
 
      </Routes>
     </>
