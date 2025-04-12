@@ -137,7 +137,7 @@ const Signup = () => {
 
         <button
           type="submit"
-          className="bg-green-600 text-white p-2 rounded-[10px]"
+          className="bg-green-600 text-white p-2 rounded-[10px] cursor-pointer"
         >
           {" "}
           {isPending ? (
