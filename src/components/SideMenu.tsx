@@ -4,8 +4,8 @@ import course_gray from "../assets/images/course-gray.svg";
 import course_blue from "../assets/images/course-blue.svg";
 import people_gray from "../assets/images/people-gray.svg";
 import people_blue from "../assets/images/people-blue.svg";
-import link_gray from "../assets/images/link-gray.svg";
-import link_blue from "../assets/images/link-blue.svg";
+// import link_gray from "../assets/images/link-gray.svg";
+// import link_blue from "../assets/images/link-blue.svg";
 import payment_gray from "../assets/images/payment-gray.svg";
 import payment_blue from "../assets/images/payment-blue.svg";
 import logout from "../assets/images/logout.svg";
@@ -44,12 +44,12 @@ const SideMenu = () => {
       activeIcon: people_blue,
       link: "/trainers",
     },
-    {
-      title: "Link Courses",
-      icon: link_gray,
-      activeIcon: link_blue,
-      link: "#",
-    },
+    // {
+    //   title: "Link Courses",
+    //   icon: link_gray,
+    //   activeIcon: link_blue,
+    //   link: "#",
+    // },
     {
       title: "Payment",
       icon: payment_gray,
@@ -80,13 +80,13 @@ const SideMenu = () => {
               <Link
                 to={item.link}
                 className={`flex items-center gap-2 p-2 ${
-                  pathName === item.link
+                  (item.link === "/" && pathName === "/") || (pathName.startsWith(item.link) && item.link !== "/")
                     ? "text-blue-600 font-semibold border-r-[4px] border-blue-600 bg-blue-300/[0.2]"
                     : ""
                 }`}
               >
                 <img
-                  src={pathName === item.link ? item.activeIcon : item.icon}
+                  src={(item.link === "/" && pathName === "/") || (pathName.startsWith(item.link) && item.link !== "/") ? item.activeIcon : item.icon}
                   alt={item.title}
                 />
                 <span>{item.title}</span>

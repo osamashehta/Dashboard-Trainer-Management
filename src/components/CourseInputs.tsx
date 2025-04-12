@@ -4,6 +4,7 @@ import close from "../assets/images/close.svg";
 type TTableData = {
   id: number;
   courseName: string;
+  instructor: string;
   duration: string;
   price: string;
   status: "Active" | "Upcoming";
@@ -83,52 +84,29 @@ const CourseInputs = ({
         >
           <img src={close} alt="close" className="w-[36px] h-[36px]" />
         </p>
-        <div className="relative">
-          <input
-            className="border border-gray-300 px-2 py-2 text-black rounded-[8px] max-w-[250px] w-full"
-            type="text"
-            placeholder="Course Name"
-            {...register("courseName", { required: "This field is required" })}
-          />
-          {errors.courseName && (
-            <span className="text-red-500 absolute top-[-16px] left-2 bg-white px-2">
-              {errors.courseName.message}
-            </span>
-          )}
-        </div>
-        <div className="relative">
-          <input
-            className="border border-gray-300 px-2 py-2 text-black rounded-[8px] max-w-[250px] w-full"
-            type="text"
-            placeholder="Duration"
-            {...register("duration", { required: "This field is required" })}
-          />
-          {errors.duration && (
-            <span className="text-red-500 absolute top-[-16px] left-2 bg-white px-2">
-              {errors.duration.message}
-            </span>
-          )}
-        </div>
-        <div className="relative">
-          <input
-            className="border border-gray-300 px-2 py-2 text-black rounded-[8px] max-w-[250px] w-full"
-            type="text"
-            placeholder="Price"
-            {...register("price", {
-              required: "This field is required",
-              pattern: {
-                value: /^[0-9]+$/,
-                message: "Enter a valid number",
-              },
-            })}
-          />
 
-          {errors.price && (
-            <span className="text-red-500 absolute top-[-16px] left-2 bg-white px-2">
-              {errors.price.message}
-            </span>
-          )}
-        </div>
+        {["courseName","instructor", "duration", "price"].map((field) => (
+          <div key={field} className="relative">
+            <input
+              className="border border-gray-300 px-2 py-2 text-black rounded-[8px] max-w-[250px] w-full"
+              type="text"
+              placeholder={field.replace(/([A-Z])/g, " $1")}
+              {...register(field as keyof TTableData, {
+                required: "This field is required",
+                pattern:
+                  field === "price"
+                    ? { value: /^[0-9]+$/, message: "Enter a valid number" }
+                    : undefined,
+              })}
+            />
+            {errors[field as keyof TTableData] && (
+              <span className="text-red-500 absolute top-[-16px] left-2 bg-white px-2">
+                {errors[field as keyof TTableData]?.message}
+              </span>
+            )}
+          </div>
+        ))}
+
         <div className="relative max-w-[250px] w-full px-5">
           <select
             className="border border-gray-300 px-2 py-2 text-black rounded-[8px] outline-none w-full"

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import CourseInputs from "../components/CourseInputs";
 import add from  "../assets/images/add.svg";
+import { Link } from "react-router-dom";
 
 type TTableData = {
   id: number;
   courseName: string;
+  instructor: string;
   duration: string;
   price: string;
   status: "Active" | "Upcoming";
@@ -24,6 +26,7 @@ const generateUniqueId = () => Math.floor(Math.random() * 1000000);
     {
       id: generateUniqueId(),
       courseName: "javaScript",
+      instructor: "Osama Saqr",
       duration: "4 weeks",
       price: "100",
       status: "Active",
@@ -31,6 +34,7 @@ const generateUniqueId = () => Math.floor(Math.random() * 1000000);
     {
       id: generateUniqueId(),
       courseName: "React js",
+      instructor: "Ahmed Ali",
       duration: "8 weeks",
       price: "150",
       status: "Active",
@@ -60,6 +64,7 @@ const generateUniqueId = () => Math.floor(Math.random() * 1000000);
     setSelectedData({
       id: generateUniqueId(),
       courseName: "",
+      instructor: "",
       duration: "",
       price: "",
       status: "Active",
@@ -110,7 +115,7 @@ const generateUniqueId = () => Math.floor(Math.random() * 1000000);
               className="text-slate-500 border-b border-slate-200 h-[60px]"
             >
               <td className="text-slate-600 text-[10px] font-medium md:text-[18px] md:font-semibold">
-                {item.courseName}
+                <Link to={`/courses/${item.id}-${item.courseName}-${item.instructor}-${item.duration}-${item.price}-${item.status}`} className="flex flex-col"><p>{item.courseName}</p> <p className="text-[12px] text-gray-400">{item.instructor}</p></Link>
               </td>
               <td className="text-gray-500 text-[10px] font-medium md:text-[18px] md:font-semibold">
                 {item.duration}

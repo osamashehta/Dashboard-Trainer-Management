@@ -100,7 +100,7 @@ const Trainer = () => {
           >
             <div className="flex gap-2 justify-start items-center">
               <p className="bg-emerald-600 text-white px-2 py-1 rounded-[8px]">
-                OS
+                {item.trainerName.split(" ").map((word) => word.charAt(0).toUpperCase())}
               </p>
               <div className="flex flex-col items-start justify-center">
                 <p className="font-semibold">{item.trainerName}</p>
