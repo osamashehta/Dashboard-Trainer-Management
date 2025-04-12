@@ -3,7 +3,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import close from "../../assets/images/close.svg";
 import { TTableData } from "../../lib/types";
 
-
 type Props = {
   selectedData: TTableData;
   setAllData: React.Dispatch<React.SetStateAction<TTableData[]>>;
@@ -79,7 +78,7 @@ const CourseInputs = ({
           <img src={close} alt="close" className="w-[36px] h-[36px]" />
         </p>
 
-        {["courseName","instructor", "duration", "price"].map((field) => (
+        {["courseName", "instructor", "duration", "price"].map((field) => (
           <div key={field} className="relative">
             <input
               className="border border-gray-300 px-2 py-2 text-black rounded-[8px] max-w-[250px] w-full"

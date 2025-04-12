@@ -5,8 +5,7 @@ const CourseDetails = () => {
   const { details } = useParams();
   const detailsArray = details?.split("-");
 
-  const [ courseName, instructor, duration, price] =
-    detailsArray || [];
+  const [courseName, instructor, duration, price] = detailsArray || [];
 
   return (
     <div className="Container pb-8">

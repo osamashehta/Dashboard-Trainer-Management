@@ -23,7 +23,6 @@ const SideMenu = () => {
   const [open, setOpen] = useState(false);
 
   const pathName = useLocation().pathname;
-  console.log("pathName", pathName);
 
   const menuItems: TMenuItems[] = [
     {
@@ -57,12 +56,11 @@ const SideMenu = () => {
       link: "/payments",
     },
   ];
-const navigate = useNavigate();
-  const handleLogout = ()=> {
+  const navigate = useNavigate();
+  const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
-
-  }
+  };
   return (
     <>
       <aside
@@ -85,24 +83,31 @@ const navigate = useNavigate();
               <Link
                 to={item.link}
                 className={`flex items-center gap-2 p-2 ${
-                  (item.link === "/" && pathName === "/") || (pathName.startsWith(item.link) && item.link !== "/")
+                  (item.link === "/" && pathName === "/") ||
+                  (pathName.startsWith(item.link) && item.link !== "/")
                     ? "text-blue-600 font-semibold border-r-[4px] border-blue-600 bg-blue-300/[0.2]"
                     : ""
                 }`}
               >
                 <img
-                  src={(item.link === "/" && pathName === "/") || (pathName.startsWith(item.link) && item.link !== "/") ? item.activeIcon : item.icon}
+                  src={
+                    (item.link === "/" && pathName === "/") ||
+                    (pathName.startsWith(item.link) && item.link !== "/")
+                      ? item.activeIcon
+                      : item.icon
+                  }
                   alt={item.title}
                 />
                 <span>{item.title}</span>
               </Link>
             </li>
           ))}
-          <li className="flex items-center text-red-600 gap-2 p-2 cursor-pointer" onClick={handleLogout}>
-            
-              <img src={logout} alt="Logout" />
-              <span>Logout</span>
-            
+          <li
+            className="flex items-center text-red-600 gap-2 p-2 cursor-pointer"
+            onClick={handleLogout}
+          >
+            <img src={logout} alt="Logout" />
+            <span>Logout</span>
           </li>
         </ul>
       </aside>

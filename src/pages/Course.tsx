@@ -4,8 +4,6 @@ import CourseHeader from "../components/Course/CourseHeader";
 import CourseTable from "../components/Course/CourseTable";
 import { TTableData } from "../lib/types";
 
-
-
 const Course = () => {
   const [edit, setEdit] = useState(false);
   const [selectedData, setSelectedData] = useState<TTableData | undefined>();

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import spinner from "../assets/images/Ellipsis@1x-1.0s-66px-66px.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 type Inputs = {
   email: string;
   password: string;
@@ -28,7 +29,7 @@ const Login = () => {
     }
     setIsPending(true);
     new Promise((resolve) => setTimeout(resolve, 1000)).then(() => {
-      console.log(data);
+      toast.success("Login successful");
       navigate("/");
       reset();
       setIsPending(false);
@@ -37,12 +38,12 @@ const Login = () => {
   return (
     <div className="flex flex-col gap-4 justify-center items-center  h-dvh Container">
       <h3 className="text-2xl font-semibold text-blue-600">
-        Sign in to your account
+        Log in to your account
       </h3>
       {!isExist && (
         <h3 className="text-md font-semibold bg-red-300/[0.4] px-4 py-2 rounded-[14px] text-red-600">
           {" "}
-          Email or password is incorrect, please try again 
+          Email or password is incorrect, please try again
         </h3>
       )}
       <form

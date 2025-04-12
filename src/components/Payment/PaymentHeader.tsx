@@ -3,8 +3,7 @@ import payment_gray from "../../assets/images/payment-gray.svg";
 const PaymentHeader = () => {
   return (
     <>
-    
-    <div className="flex justify-between items-center mt-8 mb-4">
+      <div className="flex justify-between items-center mt-8 mb-4">
         <h3 className="font-light text-sm md:font-semibold md:text-2xl">
           Payment Management
         </h3>
@@ -47,7 +46,7 @@ const PaymentHeader = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default PaymentHeader
+export default PaymentHeader;
