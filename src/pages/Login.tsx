@@ -14,6 +14,7 @@ const Login = () => {
       ? JSON.parse(localStorage.getItem("user") as string)
       : {}
   );
+  const generateToken = () => Math.floor(Math.random() * 1000000);
   const [isExist, setIsExist] = useState(true);
   const navigate = useNavigate();
   const {
@@ -28,12 +29,16 @@ const Login = () => {
       return null;
     }
     setIsPending(true);
+    localStorage.setItem("token", generateToken().toString());
+
+    // if(token){
     new Promise((resolve) => setTimeout(resolve, 1000)).then(() => {
       toast.success("Login successful");
       navigate("/");
       reset();
       setIsPending(false);
     });
+    // }
   };
   return (
     <div className="flex flex-col gap-4 justify-center items-center  h-dvh Container">

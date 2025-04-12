@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
       ? JSON.parse(localStorage.getItem("user") as string)
       : {}
   );
-  if (user.email && user.password) {
+  if (user.email && user.password && localStorage.getItem("token")) {
     return children;
   } else {
     return <Navigate to="/login" />;

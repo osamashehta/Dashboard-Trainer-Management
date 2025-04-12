@@ -4,8 +4,6 @@ import course_gray from "../assets/images/course-gray.svg";
 import course_blue from "../assets/images/course-blue.svg";
 import people_gray from "../assets/images/people-gray.svg";
 import people_blue from "../assets/images/people-blue.svg";
-// import link_gray from "../assets/images/link-gray.svg";
-// import link_blue from "../assets/images/link-blue.svg";
 import payment_gray from "../assets/images/payment-gray.svg";
 import payment_blue from "../assets/images/payment-blue.svg";
 import logout from "../assets/images/logout.svg";
@@ -43,12 +41,6 @@ const SideMenu = () => {
       activeIcon: people_blue,
       link: "/trainers",
     },
-    // {
-    //   title: "Link Courses",
-    //   icon: link_gray,
-    //   activeIcon: link_blue,
-    //   link: "#",
-    // },
     {
       title: "Payment",
       icon: payment_gray,
@@ -58,7 +50,7 @@ const SideMenu = () => {
   ];
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     navigate("/login");
   };
   return (
